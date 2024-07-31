@@ -10,7 +10,13 @@ x-app-defaults: &app-defaults
   ports:
     - "9000:9000"
   networks:
-    - listmonk
+    - dokploy-network
+  labels:
+    - traefik.enable=true
+    - traefik.http.routers.sovorun-listmonk.rule=Host('mailer.sovorun.com')
+    - traetik.http.routers.sovorun-listmonk.entrypoints=websecure
+    - traefik.http.routers.sovorun-listmonk.tls.certResolver=letsencrypt
+    - traetik.http.services.sovorun-listmonk.toadbalancer.server.port=9000
   environment:
     - TZ=Etc/UTC
 
@@ -19,7 +25,7 @@ x-db-defaults: &db-defaults
   ports:
     - "9432:5432"
   networks:
-    - listmonk
+    - dokploy-network
   environment:
     - POSTGRES_PASSWORD=listmonk
     - POSTGRES_USER=listmonk
@@ -60,7 +66,8 @@ services:
       - demo-db
 
 networks:
-  listmonk:
+  dokploy-network:
+    external: true
 
 volumes:
   listmonk-data:
