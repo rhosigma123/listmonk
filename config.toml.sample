@@ -3,7 +3,7 @@
 # of localhost will only listen to connections from the current machine. To
 # listen on all interfaces use '0.0.0.0'. To listen on the default web address
 # port, use port 80 (this will require running with elevated permissions).
-address = "65.20.88.154:9000"
+address = "localhost:9000"
 
 # BasicAuth authentication for the admin dashboard. This will eventually
 # be replaced with a better multi-user, role-based authentication system.
@@ -14,7 +14,7 @@ admin_password = "listmonk"
 
 # Database.
 [db]
-host = "65.20.88.154"
+host = "localhost"
 port = 5432
 user = "listmonk"
 password = "listmonk"
